@@ -1,83 +1,97 @@
 package models;
 
+import java.util.Objects;
+
 public class Paciente {
-    private Integer idPaciente;
-    private Integer idNutricionista;
-    private String nmNome;
-    private String nmEmail;
-    private String nmSenha;
-    private Boolean stAtivo;
+    private Integer id;
+    private Nutricionista nutricionista;
+    private String nome;
+    private String email;
+    private String senha;
+    private Boolean status;
 
     public Paciente() {
     }
 
-    public Paciente(Integer idNutricionista, String nome, String email, String senha) {
-        this.idNutricionista = idNutricionista;
-        nmNome = nome;
-        nmEmail = email;
-        nmSenha = senha;
-        stAtivo = true;
+    public Paciente(Nutricionista nutricionista, String nome, String email, String senha) {
+        this.nutricionista = nutricionista;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.status = true;
     }
 
-    public Paciente(Integer id, Integer idNutricionista, String nome, String email, String senha, Boolean ativo) {
-        idPaciente = id;
-        this.idNutricionista = idNutricionista;
-        nmNome = nome;
-        nmEmail = email;
-        nmSenha = senha;
-        stAtivo = ativo;
+    public Paciente(Integer id, Nutricionista nutricionista, String nome, String email, String senha, Boolean status) {
+        this.id = id;
+        this.nutricionista = nutricionista;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.status = status;
     }
 
-    public Integer getIdPaciente() {
-        return idPaciente;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdPaciente(Integer v) {
-        idPaciente = v;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Integer getIdNutricionista() {
-        return idNutricionista;
+    public Nutricionista getNutricionista() {
+        return nutricionista;
     }
 
-    public void setIdNutricionista(Integer v) {
-        idNutricionista = v;
+    public void setNutricionista(Nutricionista nutricionista) {
+        this.nutricionista = nutricionista;
     }
 
-    public String getNmNome() {
-        return nmNome;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNmNome(String v) {
-        nmNome = v;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getNmEmail() {
-        return nmEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setNmEmail(String v) {
-        nmEmail = v;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getNmSenha() {
-        return nmSenha;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setNmSenha(String v) {
-        nmSenha = v;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
-    public Boolean getStAtivo() {
-        return stAtivo;
+    public Boolean getStatus() {
+        return status;
     }
 
-    public void setStAtivo(Boolean v) {
-        stAtivo = v;
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Paciente paciente = (Paciente) o;
+        return Objects.equals(id, paciente.id) && Objects.equals(nutricionista, paciente.nutricionista) && Objects.equals(nome, paciente.nome) && Objects.equals(email, paciente.email) && Objects.equals(senha, paciente.senha) && Objects.equals(status, paciente.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nutricionista, nome, email, senha, status);
     }
 
     @Override
     public String toString() {
-        return "Id: " + idPaciente + " | Nome: " + nmNome + " | E-mail: " + nmEmail + " | Ativo: " + stAtivo;
+        return "Id: " + id + " | Nome: " + nome + " | E-mail: " + email + " | Ativo: " + status;
     }
 }

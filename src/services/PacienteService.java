@@ -36,8 +36,8 @@ public class PacienteService {
     }
 
     public Paciente login(String email, String senha) {
-        Paciente p = dao.login(email);
-        return p != null && p.getNmSenha().equals(senha) ? p : null;
+        Paciente paciente = dao.login(email);
+        return paciente != null && paciente.getSenha().equals(senha) ? paciente : null;
     }
 
     private void validar(Paciente p) throws SistemaException {
