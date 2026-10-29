@@ -1,31 +1,31 @@
 package models;
 
 public class Receita {
-    private Integer idReceita;
-    private Integer idNutricionista;
-    private Integer idPaciente;
-    private String nmTitulo;
-    private String nmDescricao;
+    private Integer id;
+    private Nutricionista nutricionista;
+    private Paciente paciente;
+    private String titulo;
+    private String descricao;
     private String diaSemana;
 
     public Receita() {
     }
 
-    public Receita(Integer idNutricionista, Integer idPaciente, String titulo, String descricao, String diaSemana) {
-        this.idNutricionista = idNutricionista;
-        this.idPaciente = idPaciente;
-        nmTitulo = titulo;
-        nmDescricao = descricao;
+    public Receita(Nutricionista nutricionista, Paciente paciente, String titulo, String descricao, String diaSemana) {
+        this.nutricionista = nutricionista;
+        this.paciente = paciente;
+        this.titulo = titulo;
+        this.descricao = descricao;
         this.diaSemana = diaSemana;
     }
 
-    public Receita(Integer id, Integer idNutricionista, Integer idPaciente, String titulo, String descricao, String dia) {
-        idReceita = id;
-        this.idNutricionista = idNutricionista;
-        this.idPaciente = idPaciente;
-        nmTitulo = titulo;
-        nmDescricao = descricao;
-        diaSemana = dia;
+    public Receita(Integer id, Nutricionista nutricionista, Paciente paciente, String titulo, String descricao, String dia) {
+        this.id = id;
+        this.nutricionista = nutricionista;
+        this.paciente = paciente;
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.diaSemana = dia;
     }
 
     public Integer getIdReceita() {

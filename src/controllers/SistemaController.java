@@ -69,23 +69,23 @@ public class SistemaController {
         menuPaciente(p);
     }
 
-    private void menuNutricionista(Nutricionista n) {
+    private void menuNutricionista(Nutricionista nutricionista) {
         int op;
         do {
-            op = view.menu("NUTRICIONISTA - " + n.getNmNome(), new String[]{"Pacientes", "Receitas", "Consultas e cobranças", "Meu cadastro", "Sair"});
+            op = view.menu("NUTRICIONISTA - " + nutricionista.getNome(), new String[]{"Pacientes", "Receitas", "Consultas e cobranças", "Meu cadastro", "Sair"});
             try {
                 switch (op) {
                     case 0:
-                        menuPacientes(n);
+                        menuPacientes(nutricionista);
                         break;
                     case 1:
-                        menuReceitas(n);
+                        menuReceitas(nutricionista);
                         break;
                     case 2:
-                        menuConsultas(n);
+                        menuConsultas(nutricionista);
                         break;
                     case 3:
-                        editarNutricionista(n);
+                        editarNutricionista(nutricionista);
                         break;
                 }
             } catch (Exception e) {
@@ -101,29 +101,29 @@ public class SistemaController {
         else view.erro("Cadastro", "Não foi possível alterar.");
     }
 
-    private void menuPacientes(Nutricionista n) throws SistemaException {
+    private void menuPacientes(Nutricionista nutricionista) throws SistemaException {
         int op;
         do {
             op = view.menu("PACIENTES", new String[]{"Listar", "Cadastrar", "Alterar", "Inativar", "Voltar"});
             switch (op) {
                 case 0:
-                    view.exibir("Pacientes", pacienteService.listar(n.getIdNutricionista()));
+                    view.exibir("Pacientes", pacienteService.listar(nutricionista.getId()));
                     break;
                 case 1:
-                    cadastrarPaciente(n);
+                    cadastrarPaciente(nutricionista);
                     break;
                 case 2:
-                    alterarPaciente(n);
+                    alterarPaciente(nutricionista);
                     break;
                 case 3:
-                    inativarPaciente(n);
+                    inativarPaciente(nutricionista);
                     break;
             }
         } while (op >= 0 && op != 4);
     }
 
-    private void cadastrarPaciente(Nutricionista n) throws SistemaException {
-        Paciente p = view.dadosPaciente(new Paciente(n.getIdNutricionista(), "", "", ""));
+    private void cadastrarPaciente(Nutricionista nutricionista) throws SistemaException {
+        Paciente paciente = view.dadosPaciente(new Paciente(nutricionista.getId(), "", "", ""));
         if (p != null && pacienteService.cadastrar(p))
             view.sucesso("Paciente", "Paciente cadastrado. Informe ao paciente o e-mail e a senha.");
         else if (p != null) view.erro("Paciente", "Não foi possível cadastrar.");
@@ -156,7 +156,7 @@ public class SistemaController {
         Integer id = pedirId("Inativar paciente", pacienteService.listar(n.getIdNutricionista()));
         if (id == null) return;
         if (view.confirmar("Inativar", "Deseja inativar o paciente " + id + "?") == 0) {
-            if (pacienteService.excluir(id, n.getIdNutricionista())) view.sucesso("Paciente", "Paciente inativado.");
+            if (pacienteService.excluir(id, n.getId())) view.sucesso("Paciente", "Paciente inativado.");
             else view.erro("Paciente", "Não foi possível inativar.");
         }
     }

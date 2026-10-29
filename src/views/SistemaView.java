@@ -23,27 +23,27 @@ public class SistemaView {
     public int confirmar(String titulo,String texto) {
         return JOptionPane.showConfirmDialog(null,texto,titulo,JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
     }
-    public Nutricionista dadosNutricionista(Nutricionista n) {
-        String nome=ler("Nutricionista","Nome:",n.getNmNome()); if(nome==null)return null;
-        String email=ler("Nutricionista","E-mail:",n.getNmEmail()); if(email==null)return null;
-        String senha=ler("Nutricionista","Senha:",n.getNmSenha()); if(senha==null)return null;
-        n.setNmNome(nome);n.setNmEmail(email);n.setNmSenha(senha);return n;
+    public Nutricionista dadosNutricionista(Nutricionista nutricionista) {
+        String nome=ler("Nutricionista","Nome:",nutricionista.getNome()); if(nome==null)return null;
+        String email=ler("Nutricionista","E-mail:",nutricionista.getEmail()); if(email==null)return null;
+        String senha=ler("Nutricionista","Senha:",nutricionista.getSenha()); if(senha==null)return null;
+        nutricionista.setNome(nome);nutricionista.setEmail(email);nutricionista.setSenha(senha);return nutricionista;
     }
-    public Paciente dadosPaciente(Paciente p) {
-        String nome=ler("Paciente","Nome:",p.getNmNome());if(nome==null)return null;
-        String email=ler("Paciente","E-mail:",p.getNmEmail());if(email==null)return null;
-        String senha=ler("Paciente","Senha:",p.getNmSenha());if(senha==null)return null;
-        p.setNmNome(nome);p.setNmEmail(email);p.setNmSenha(senha);return p;
+    public Paciente dadosPaciente(Paciente paciente) {
+        String nome=ler("Paciente","Nome:",paciente.getNome());if(nome==null)return null;
+        String email=ler("Paciente","E-mail:",paciente.getEmail());if(email==null)return null;
+        String senha=ler("Paciente","Senha:",paciente.getSenha());if(senha==null)return null;
+        paciente.setNome(nome);paciente.setEmail(email);paciente.setSenha(senha);return paciente;
     }
-    public Receita dadosReceita(Receita r) {
-        String id=ler("Receita","ID do paciente:",r.getIdPaciente());if(id==null)return null;
-        String titulo=ler("Receita","Título:",r.getNmTitulo());if(titulo==null)return null;
-        String descricao=ler("Receita","Descrição:",r.getNmDescricao());if(descricao==null)return null;
+    public Receita dadosReceita(Receita receita) {
+        String id=ler("Receita","ID do paciente:",receita.getIdPaciente());if(id==null)return null;
+        String titulo=ler("Receita","Título:",receita.getNmTitulo());if(titulo==null)return null;
+        String descricao=ler("Receita","Descrição:",receita.getNmDescricao());if(descricao==null)return null;
         String[] dias={"Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado"};
-        Object dia=JOptionPane.showInputDialog(null,"Dia da semana:","Receita",JOptionPane.QUESTION_MESSAGE,null,dias,r.getDiaSemana()==null?dias[0]:r.getDiaSemana());
+        Object dia=JOptionPane.showInputDialog(null,"Dia da semana:","Receita",JOptionPane.QUESTION_MESSAGE,null,dias,receita.getDiaSemana()==null?dias[0]:receita.getDiaSemana());
         if(dia==null)return null;
-        try {r.setIdPaciente(Integer.parseInt(id));}catch(Exception e){erro("Receita","ID de paciente inválido.");return null;}
-        r.setNmTitulo(titulo);r.setNmDescricao(descricao);r.setDiaSemana(dia.toString());return r;
+        try {receita.setIdPaciente(Integer.parseInt(id));}catch(Exception e){erro("Receita","ID de paciente inválido.");return null;}
+        receita.setNmTitulo(titulo);receita.setNmDescricao(descricao);receita.setDiaSemana(dia.toString());return receita;
     }
     public Consulta dadosConsulta(Consulta c) {
         String id=ler("Consulta","ID do paciente:",c.getIdPaciente());if(id==null)return null;
