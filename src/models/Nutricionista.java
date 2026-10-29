@@ -1,72 +1,86 @@
 package models;
 
+import java.util.Objects;
+
 public class Nutricionista {
-    private Integer idNutricionista;
-    private String nmNome;
-    private String nmEmail;
-    private String nmSenha;
-    private Boolean stAtivo;
+    private Integer id;
+    private String nome;
+    private String email;
+    private String senha;
+    private Boolean status;
 
     public Nutricionista() {
     }
 
-    public Nutricionista(String nmNome, String nmEmail, String nmSenha) {
-        this.nmNome = nmNome;
-        this.nmEmail = nmEmail;
-        this.nmSenha = nmSenha;
-        this.stAtivo = true;
+    public Nutricionista(String nome, String email, String senha) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.status = true;
     }
 
-    public Nutricionista(Integer id, String nome, String email, String senha, Boolean ativo) {
-        idNutricionista = id;
-        nmNome = nome;
-        nmEmail = email;
-        nmSenha = senha;
-        stAtivo = ativo;
+    public Nutricionista(Integer id, String nome, String email, String senha, Boolean status) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.status = status;
     }
 
-    public Integer getIdNutricionista() {
-        return idNutricionista;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdNutricionista(Integer v) {
-        idNutricionista = v;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getNmNome() {
-        return nmNome;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNmNome(String v) {
-        nmNome = v;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getNmEmail() {
-        return nmEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setNmEmail(String v) {
-        nmEmail = v;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getNmSenha() {
-        return nmSenha;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setNmSenha(String v) {
-        nmSenha = v;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
-    public Boolean getStAtivo() {
-        return stAtivo;
+    public Boolean getStatus() {
+        return status;
     }
 
-    public void setStAtivo(Boolean v) {
-        stAtivo = v;
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Nutricionista that = (Nutricionista) o;
+        return Objects.equals(id, that.id) && Objects.equals(nome, that.nome) && Objects.equals(email, that.email) && Objects.equals(senha, that.senha) && Objects.equals(status, that.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nome, email, senha, status);
     }
 
     @Override
     public String toString() {
-        return "Id: " + idNutricionista + " | Nome: " + nmNome + " | E-mail: " + nmEmail + " | Ativo: " + stAtivo;
+        return "Id: " + id + " | Nome: " + nome + " | E-mail: " + email + " | Ativo: " + status;
     }
 }

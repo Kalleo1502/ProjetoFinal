@@ -8,14 +8,14 @@ public class NutricionistaService {
     private final NutricionistaDAO dao = new NutricionistaDAO();
 
     public Boolean cadastrar(Nutricionista n) throws SistemaException {
-        validar(n.getNmNome(), n.getNmEmail(), n.getNmSenha());
-        if (dao.selecionarPorEmail(n.getNmEmail()) != null) throw new SistemaException("E-mail já cadastrado.");
+        validar(n.getNome(), n.getEmail(), n.getSenha());
+        if (dao.selecionarPorEmail(n.getEmail()) != null) throw new SistemaException("E-mail já cadastrado.");
         return dao.inserir(n);
     }
 
     public Nutricionista login(String email, String senha) {
         Nutricionista n = dao.selecionarPorEmail(email);
-        return n != null && n.getNmSenha().equals(senha) ? n : null;
+        return n != null && n.getSenha().equals(senha) ? n : null;
     }
 
     public String listar() {
@@ -31,7 +31,7 @@ public class NutricionistaService {
     }
 
     public Boolean alterar(Nutricionista n) throws SistemaException {
-        validar(n.getNmNome(), n.getNmEmail(), n.getNmSenha());
+        validar(n.getNome(), n.getEmail(), n.getSenha());
         return dao.atualizar(n);
     }
 

@@ -2,6 +2,7 @@ package services;
 
 import dao.PacienteDAO;
 import exceptions.SistemaException;
+import models.Nutricionista;
 import models.Paciente;
 
 import java.util.ArrayList;
@@ -31,8 +32,8 @@ public class PacienteService {
         return dao.atualizar(p);
     }
 
-    public Boolean excluir(Integer id, Integer idNutricionista) {
-        return dao.deletar(id, idNutricionista);
+    public Boolean excluir(Integer id) {
+        return dao.deletar(id);
     }
 
     public Paciente login(String email, String senha) {
@@ -42,9 +43,9 @@ public class PacienteService {
 
     private void validar(Paciente p) throws SistemaException {
         String erros = "";
-        if (p.getNmNome() == null || p.getNmNome().trim().isEmpty()) erros += "\n- Nome obrigatório.";
-        if (p.getNmEmail() == null || !p.getNmEmail().contains("@")) erros += "\n- E-mail inválido.";
-        if (p.getNmSenha() == null || p.getNmSenha().trim().isEmpty()) erros += "\n- Senha obrigatória.";
+        if (p.getNome() == null || p.getNome().trim().isEmpty()) erros += "\n- Nome obrigatório.";
+        if (p.getEmail() == null || !p.getEmail().contains("@")) erros += "\n- E-mail inválido.";
+        if (p.getSenha() == null || p.getSenha().trim().isEmpty()) erros += "\n- Senha obrigatória.";
         if (!erros.isEmpty()) throw new SistemaException(erros);
     }
 }
